@@ -318,22 +318,22 @@ MDA_timestep <- function(vals,params,demog,MDA_round, Tx_mat){
 } 
 
 
-#UPDATED FUNCTION to give duration of active infection: COMMENTED OUT IS ORIGINAL
+#UPDATED FUNCTION to give duration of active infection
 
 ID_period_function<-function(Ind_ID_period_base,No_Inf,params,Age){
   #T_ID<- round((Ind_ID_period_base-params$min_ID)*exp(-params$inf_red*(No_Inf-1))+params$min_ID)
-  ag<--0.00012 
-  aq<--0.039
-  T_ID<- round(params$min_ID +(Ind_ID_period_base-params$min_ID)*exp(aq*(No_Inf)+ag*(Age)))
+  #ag<--0.00012 
+  #aq<--0.039
+  T_ID<- round(params$min_ID +(Ind_ID_period_base-params$min_ID)*exp(params$aq_ID*(No_Inf)+params$ag_ID*(Age)))
   return(T_ID)
 }
 
 
 # UPDATED FUNCTION includes age component of decay in disease duration, see "New_age_immunity" for alternative
 D_period_function<-function(Ind_D_period_base,params,No_Inf,Age){
-  ag<--0.00098
-  aq<--0.078  
-  T_D<- round(params$min_D +(Ind_D_period_base-params$min_D)*exp(aq*(No_Inf)+ag*(Age)))
+  #ag<--0.00098
+  #aq<--0.078  
+  T_D<- round(params$min_D +(Ind_D_period_base-params$min_D)*exp(params$aq_D*(No_Inf)+params$ag_D*(Age)))
   return(T_D)
 }
 
@@ -414,7 +414,7 @@ Seed_infection<-function(params,vals,Target_TF_1_9,inits){
 
 
 
-#Initialise age distribution, alternative where draw from truncated geometric, needs trundist package 
+#Initialise age distribution, draw from truncated geometric, needs trundist package 
 
 #NOTE- ages are in weeks
 init_ages<-function(params,demog){
@@ -466,8 +466,8 @@ extract_output_alltimes<-function(data_store_all_sim,sim_params){
   
   #Fill with output, 
   for(i in 1:nsim){
-    True_Prev_Infection_children[,i]<-data_store_all_sim[[i]]$True_Prev_Infection_children_1_9[1:timesim]
-    True_Prev_Disease_children[,i]<-data_store_all_sim[[i]]$True_Prev_Disease_children_1_9[1:timesim]  
+    True_Prev_Infection_children[,i]<-data_store_all_sim[[i]]$True_Prev_Infection_children_0_9[1:timesim]
+    True_Prev_Disease_children[,i]<-data_store_all_sim[[i]]$True_Prev_Disease_children_0_9[1:timesim]  
     True_Prev_Infection[,i]<-data_store_all_sim[[i]]$True_Prev_Infection[1:timesim]
     True_Prev_Disease[,i]<-data_store_all_sim[[i]]$True_Prev_Disease[1:timesim]  
     

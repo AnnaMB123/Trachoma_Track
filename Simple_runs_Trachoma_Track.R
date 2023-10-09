@@ -27,7 +27,7 @@ parameters <- as.list(c(N=2500, #Population size
 demog<-as.list(c(tau=1/(40*52),max_age=70*52,mean_age=20*52)) #tau= death rate in weeks^-1
 
 nsim<-20 #Number of simulations
-Target_TF_1_9<-20 ## This is just for setting initial number of infections etc, doesn't really matter if have long enough burnin i.e. more than 70years
+Target_TF_1_9<-20 ## This is just for initialising number of infections etc, doesn't really matter if have long enough burnin i.e. more than 70years
 Start_date<-as.Date("2018-01-01")
 End_date<-as.Date("2030-12-31")
 MDA_dates<-as.Date(c("2020-02-01","2021-05-01","2022-05-01")) #Can specify MDA dates here
